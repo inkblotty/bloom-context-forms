@@ -5,7 +5,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 const shallowWithStore = (component, store) => {
   const context = {
-    store,
+    store
   };
   return Enzyme.shallow(component, { context });
 };

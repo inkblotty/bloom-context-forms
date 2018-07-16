@@ -61,5 +61,53 @@ import { FormProvider, getCurrentContext } from 'bloom-context-forms';
 Fork this repo, and submit any changes as a PR to master. Accepted PRs will be merged and published to npm.
 
 ## Basic Usage
+Container Component:
+```
+import { FormProvider } from 'bloom-context-forms';
+import LoginForm from './login-form';
+
+class LoginFormContainer extends React.Component {
+  submitForm = async (formData, files, successCallback, failCallback) => {
+    // submit formData and files
+  }
+
+  validationHelp = {
+    dictionary: {
+      'must-equal-bloop': testData =>
+        testData !== 'bloop' ? 'Sorry, this field has to be "bloop."' : null
+    }
+  }
+
+  render() {
+    const fieldNames = ['username', 'password'];
+
+    return (
+      <FormProvider
+        fieldNames={fieldNames}
+        id='loginForm'
+        submitForm={this.submitForm}
+        validationHelp={this.validationHelp}
+      >
+        <LoginForm />
+      </FormProvider>
+    )
+  }
+}
+
+```
+
+Form component:
+```
+import { connectForm } from 'bloom-context-forms';
+
+const LoginForm = () => { ... };
+
+export default connectForm(LoginForm);
+```
+
+The distinction between container and presentational component is to separate state and data-calling functionality from markup.
+
+Container: Connects the component to the form context state; Submits data to the API; Updates state as needed
+Presentation Component: Uses functionality passed down from parent containers; Focus is purely presentational / view layer
 
 [Back to Contents](https://github.com/vineyard-bloom/bloom-context-forms#readme-contents)

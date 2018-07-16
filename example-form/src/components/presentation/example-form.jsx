@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Button,
   Checkbox,
@@ -12,72 +12,70 @@ import {
   TextArea,
   TextInput,
   ToggleSwitch
-} from 'bloom-inputs'
-import { connectForm, getCurrentContext } from 'bloom-context-forms'
+} from 'bloom-inputs';
+import { connectForm, getCurrentContext } from 'bloom-context-forms';
 
 const ExampleForm = ({ context }) => {
-  // console.log(getCurrentContext('exampleForm'))
-  // console.log(context)
   // I am a reference form
-  const formData = context.fields
+  const formData = context.fields;
   const radioOptions = [
     { label: 'Radio 1', id: 'radio-1' },
     { label: 'Radio 2', id: 'radio-2' },
     { label: 'Radio 3', id: 'radio-3' }
-  ]
+  ];
   const radioOptions2 = [
     { label: 'RadioButton 1', id: 'radio-button-1' },
     { label: 'RadioButton 2', id: 'radio-button-2' },
     { label: 'RadioButton 3', id: 'radio-button-3' }
-  ]
+  ];
   const selectOptions = [
     { label: 'Muffins', value: 'muffins' },
     { label: 'Cookies', value: 'cookies' },
     { label: 'Cakes', value: 'birthday cakes' }
-  ]
+  ];
 
   const toggleClick = e => {
-    e.preventDefault()
+    e.preventDefault();
     context.updateField(
       context.formId,
       'toggle',
       formData && formData.toggle && !formData.toggle.value
-    )
-  }
+    );
+  };
 
   return (
-    <form id='exampleForm' className='Form AuthForm' noValidate>
-      <h3 className='AuthForm-header'>Example Form</h3>
+    <form id="exampleForm" className="Form AuthForm" noValidate>
+      <h3 className="AuthForm-header">Example Form</h3>
       <TextInput
-        id='textinput'
-        name='textinput'
-        label='Text Input'
+        id="textinput"
+        name="textinput"
+        label="Text Input"
         showLabel
         value={formData.textinput ? formData.textinput.value : ''}
         onChange={context.updateField}
-        placeholder='Regular old Text Input'
+        placeholder="Regular old Text Input"
       />
       <TextInput
         error={formData.password ? formData.password.error : ''}
-        id='password'
-        name='password'
-        label='Password'
+        id="password"
+        name="password"
+        label="Password"
         showLabel
         isPassword
         required
         value={formData.password ? formData.password.value : ''}
         onChange={context.updateField}
-        validateAs='not-empty'
+        validateAs="not-empty"
       />
       <TextInput
-        id='onlyBloop'
-        name='onlyBloop'
-        label='Must equal &quot;bloop&quot;'
+        id="onlyBloop"
+        name="onlyBloop"
+        label="Must equal &quot;bloop&quot;"
         showLabel
         required
         value={formData.onlyBloop ? formData.onlyBloop.value : ''}
         onChange={context.updateField}
-        validateAs='must-equal-bloop'
+        validateAs="must-equal-bloop"
         onBlur={context.checkField}
         error={
           formData.onlyBloop && formData.onlyBloop.error
@@ -86,51 +84,51 @@ const ExampleForm = ({ context }) => {
         }
       />
       <Button
-        contents='Trigger Multiple check'
-        id='multiple-check-button'
+        contents="Trigger Multiple check"
+        id="multiple-check-button"
         onClick={e => {
-          e.preventDefault()
-          context.checkMultipleFields(['onlyBloop', 'password'])
+          e.preventDefault();
+          context.checkMultipleFields(['onlyBloop', 'password']);
         }}
       />
       <Button
-        contents='Trigger Visible check'
-        id='visible-check-button'
+        contents="Trigger Visible check"
+        id="visible-check-button"
         onClick={e => {
-          e.preventDefault()
-          context.updateVisibleFields(context.formId)
+          e.preventDefault();
+          context.updateVisibleFields(context.formId);
         }}
       />
       <Checkbox
-        label='Checkbox'
+        label="Checkbox"
         checked={(formData.checkbox && formData.checkbox.value) || ''}
-        id='checkbox'
-        name='checkbox'
+        id="checkbox"
+        name="checkbox"
         onChange={context.updateField}
         showLabel
       />
       <RadioGroup
         options={radioOptions}
         onChange={context.updateField}
-        name='radio'
+        name="radio"
         value={formData.radio ? formData.radio.value : ''}
       />
       <RadioButtonGroup
         options={radioOptions2}
         onChange={context.updateField}
-        name='radio2'
+        name="radio2"
         value={formData.radio2 ? formData.radio2.value : ''}
       />
       <DateInput
-        id='date'
-        name='date'
-        label='Date Input'
+        id="date"
+        name="date"
+        label="Date Input"
         showLabel
         value={formData.date ? formData.date.value : ''}
         onChange={context.updateField}
       />
       <CurrencyInput
-        label='Currency Input'
+        label="Currency Input"
         error={
           formData.currency && formData.currency.error
             ? formData.currency.error
@@ -139,12 +137,12 @@ const ExampleForm = ({ context }) => {
         showLabel
         isRequired
         coinIcon={
-          <img src='http://www.freeiconspng.com/uploads/bitcoin-coin-currency-digital-currency-digital-walet-money-icon-30.png' />
+          <img src="http://www.freeiconspng.com/uploads/bitcoin-coin-currency-digital-currency-digital-walet-money-icon-30.png" />
         }
         onChange={context.updateField}
-        id='currency'
-        name='currency'
-        currency='BTC'
+        id="currency"
+        name="currency"
+        currency="BTC"
         value={
           formData.currency && formData.currency.value
             ? formData.currency.value
@@ -155,8 +153,8 @@ const ExampleForm = ({ context }) => {
         {/* notice the z-indices to help make sure select inputs overlap properly */}
         <SelectInput
           options={selectOptions}
-          name='select'
-          formId='example-form'
+          name="select"
+          formId="example-form"
           value={
             formData.select && formData.select.value
               ? formData.select.value
@@ -166,8 +164,8 @@ const ExampleForm = ({ context }) => {
           onChange={context.updateField}
           required
           showLabel
-          label='Select Input'
-          validateAs='not-empty'
+          label="Select Input"
+          validateAs="not-empty"
           error={
             formData.select && formData.select.error
               ? formData.select.error
@@ -178,8 +176,8 @@ const ExampleForm = ({ context }) => {
       <div style={{ zIndex: 4 }}>
         <SelectInput
           options={selectOptions}
-          name='select2'
-          formId='example-form'
+          name="select2"
+          formId="example-form"
           typeAhead={false}
           value={
             formData.select2 && formData.select2.value
@@ -188,7 +186,7 @@ const ExampleForm = ({ context }) => {
           }
           onChange={context.updateField}
           showLabel
-          label='Select Input -- No TypeAhead'
+          label="Select Input -- No TypeAhead"
           error={
             formData.select2 && formData.select2.error
               ? formData.select2.error
@@ -198,8 +196,8 @@ const ExampleForm = ({ context }) => {
       </div>
       <div style={{ zIndex: 3 }}>
         <ToggleSwitch
-          labelText='Toggle Switch'
-          name='toggle'
+          labelText="Toggle Switch"
+          name="toggle"
           onClick={toggleClick}
           isActive={
             formData.toggle && formData.toggle.value
@@ -211,48 +209,48 @@ const ExampleForm = ({ context }) => {
       </div>
       <div style={{ zIndex: 2 }}>
         <FileInput
-          name='file-simple'
-          label='Basic File Input'
-          id='file-simple'
+          name="file-simple"
+          label="Basic File Input"
+          id="file-simple"
           onChange={context.updateField}
-          formId='example-form'
+          formId="example-form"
           multiple={false}
         />
         <FileInput
           clearable
-          name='file-simple-2'
-          label='Multi File Input'
-          id='file-simple-2'
+          name="file-simple-2"
+          label="Multi File Input"
+          id="file-simple-2"
           onChange={context.updateField}
-          formId='example-form'
+          formId="example-form"
           multiple
         />
       </div>
       <Dropzone
-        name='file-droppable'
-        label='Droppable File Input'
-        id='file-droppable'
+        name="file-droppable"
+        label="Droppable File Input"
+        id="file-droppable"
         onChange={context.updateField}
-        formId='example-form'
+        formId="example-form"
         files={
           (formData['file-droppable'] && formData['file-droppable'].value) || []
         }
       />
       <TextArea
         formData={formData || { message: 'why am i undefined?' }}
-        name='textarea'
-        label='Large Text Area'
+        name="textarea"
+        label="Large Text Area"
         onChange={context.updateField}
         showLabel
       />
       <Button
-        className='Btn AuthForm-submit-button u-justify-center'
-        contents='Submit Button'
-        id='example-form-submit-button'
+        className="Btn AuthForm-submit-button u-justify-center"
+        contents="Submit Button"
+        id="example-form-submit-button"
         onClick={context.submitForm}
       />
     </form>
-  )
-}
+  );
+};
 
-export default props => connectForm('exampleForm', props)(ExampleForm)
+export default connectForm(ExampleForm);
