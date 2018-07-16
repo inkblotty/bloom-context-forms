@@ -12,7 +12,7 @@
     "prettify-staged": "prettier --config .prettierrc --write",
     "test": "npm run test-validator",
     "test-form": "./node_modules/.bin/mocha  --compilers js:babel-core/register tests/helpers/virtual-dom.js tests/form-test.js --require ignore-styles",
-    "test-validator": "./node_modules/.bin/mocha tests/validator-test --compilers js:babel-core/register"
+    "test-validator": "./node_modules/.bin/jest --notify"
   },
   "repository": {
     "type": "git",
@@ -75,10 +75,27 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-standard": "^3.0.1",
+    "jest": "^22.4.4",
     "lint-staged": "^7.0.0",
-    "mocha": "^5.0.1",
     "prettier": "1.10.2",
     "react-test-renderer": "^16.3.0",
     "sinon": "^4.4.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/__tests__/helpers/react-test-shim.js",
+      "<rootDir>/__tests__/helpers/react-test-setup.js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(.test))\\.(jsx?|tsx?)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/__tests__/helpers/*"
+    ]
   }
 }
