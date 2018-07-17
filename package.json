@@ -16,7 +16,7 @@
   },
   "keywords": ["bloom", "vineyard", "context", "react", "forms"],
   "lint-staged": {
-    "*.{js,jsx,json}": [
+    "*.{js,jsx}": [
       "prettier --config .prettierrc --write",
       "eslint --config ./.eslintrc --fix",
       "git add"
