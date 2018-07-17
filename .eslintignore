@@ -4,3 +4,6 @@
 ./scripts/*
 webpack.config.js
 ./index.js
+**/*.json
+**/*.txt
+./*
