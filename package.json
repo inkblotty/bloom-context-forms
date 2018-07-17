@@ -6,7 +6,7 @@
   "scripts": {
     "build": "./node_modules/.bin/webpack --config=webpack.config.js",
     "lint": "./node_modules/.bin/eslint --config ./.eslintrc --fix ./src/* --ext .js,.jsx",
-    "lint-staged": "./node_modules/.bin/eslint --fix --ignore-path ./.eslintignore",
+    "lint-staged": "./node_modules/.bin/eslint --config ./.eslintrc --fix",
     "pre-commit": "npm run test && npm run build && git add index.js && npm run lint-staged",
     "prettify": "node ./scripts/cross-os-prettier.js",
     "prettify-staged": "prettier --config .prettierrc --write",
