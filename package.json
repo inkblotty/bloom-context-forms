@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack --config=webpack.config.js",
-    "lint": "./node_modules/.bin/eslint --config ./.eslintrc --fix ./src/* --ext .js,.jsx",
+    "format-staged": "npm run prettify-staged && npm run lint-staged && git add",
+    "lint": "./node_modules/.bin/eslint --config ./.eslintrc --fix",
     "lint-staged": "./node_modules/.bin/eslint --config ./.eslintrc --fix",
-    "pre-commit": "npm run test && npm run build && git add index.js && npm run lint-staged",
+    "pre-commit": "npm run test && npm run build && git add index.js && npm run format-staged",
     "prettify": "node ./scripts/cross-os-prettier.js",
     "prettify-staged": "prettier --config .prettierrc --write",
     "test": "./node_modules/.bin/jest --notify"
@@ -23,13 +24,6 @@
     "react",
     "forms"
   ],
-  "lint-staged": {
-    "**/*.{js,jsx}": [
-      "npm run prettify-staged",
-      "npm run lint-staged",
-      "git add"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run pre-commit"
