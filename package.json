@@ -10,9 +10,7 @@
     "pre-commit": "npm run test && npm run build && git add index.js && npm run lint-staged",
     "prettify": "node ./scripts/cross-os-prettier.js",
     "prettify-staged": "prettier --config .prettierrc --write",
-    "test": "npm run test-validator",
-    "test-form": "./node_modules/.bin/mocha  --compilers js:babel-core/register tests/helpers/virtual-dom.js tests/form-test.js --require ignore-styles",
-    "test-validator": "./node_modules/.bin/jest --notify"
+    "test": "./node_modules/.bin/jest --notify"
   },
   "repository": {
     "type": "git",
