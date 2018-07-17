@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormContext, getCurrentContext } from '../src'
 
-const mockSubmitForm = (formData, files, successCallback, failCallback) => {
+const mockSubmitForm = (formData) => {
   return formData
 }
 

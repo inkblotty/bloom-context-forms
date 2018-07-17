@@ -9,7 +9,7 @@ import { connectForm } from 'bloom-context-forms'
 
 ...
 
-export default props => connectFrom(props.formId, props)(FormConsumerCmponent)
+export default connectForm(FormConsumerComponent)
 ```
 
 ## getCurrentContext function
@@ -21,6 +21,6 @@ import { getCurrentContext } from 'bloom-context-forms'
 
 ...
 
-getCurrentContext('whateverFormIDYouWant')
+getCurrentContext('whateverFormID')
 ```
 

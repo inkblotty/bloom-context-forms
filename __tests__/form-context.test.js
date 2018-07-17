@@ -1,11 +1,11 @@
-import { connectForm, FormContext, FormHandler, getCurrentContext } from '../src'
+import { connectForm, FormContext } from '../src'
 
 describe('FormContext', () => {
   test('has updateForm function on initialization', () => {
     expect(Object.keys(FormContext._currentValue)).toEqual(['updateForm'])
   })
 
-  test('can connect to any component', () => {
+  test('connectForm can connect to any component inside of a Provider', () => {
     expect(true).toBeTruthy()
   })
 })
