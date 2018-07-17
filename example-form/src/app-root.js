@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import ExampleForm from 'components';
+import ExampleForm from 'components'
 
 class AppRoot extends React.Component {
   render() {
-    return <ExampleForm />;
+    return <ExampleForm />
   }
 }
 
-var docRoot = document.getElementById('root');
+var docRoot = document.getElementById('root')
 
-ReactDOM.render(<AppRoot />, docRoot);
+ReactDOM.render(<AppRoot />, docRoot)

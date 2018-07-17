@@ -11,13 +11,13 @@ class ExampleFormContainer extends React.Component {
   submitForm = async (formData, files, successCallback, failCallback) => {
     // console.log(formData)
     // getCurrentContext('exampleForm')
-    console.log(getCurrentContext('exampleForm'));
+    console.log(getCurrentContext('exampleForm'))
     try {
       // const res = await callToWebService(formData)
       // this.rerouteAfterSubmit(res)
-      successCallback();
+      successCallback()
     } catch (err) {
-      failCallback(err);
+      failCallback(err)
     }
   };
 
@@ -38,26 +38,26 @@ class ExampleFormContainer extends React.Component {
       'file-droppable',
       'onlyBloop',
       'textarea'
-    ];
+    ]
 
     const validationHelp = {
       dictionary: {
         'must-equal-bloop': testData =>
           testData !== 'bloop' ? 'Sorry, this field has to be "bloop."' : null
       }
-    };
+    }
 
     return (
       <FormHandler
-        id="exampleForm"
+        id='exampleForm'
         fieldNames={fieldNames}
         submitForm={this.submitForm}
         validationHelp={validationHelp}
       >
         <ExampleForm />
       </FormHandler>
-    );
+    )
   }
 }
 
-export default ExampleFormContainer;
+export default ExampleFormContainer
