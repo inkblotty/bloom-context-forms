@@ -1,5 +1,11 @@
-import React from 'react'
+import { connectForm, FormContext, FormHandler, getCurrentContext } from '../src'
 
-describe('<FormProvider/>', () => {
-  test('init', () => expect(true).toBeTruthy())
+describe('FormContext', () => {
+  test('has updateForm function on initialization', () => {
+    expect(Object.keys(FormContext._currentValue)).toEqual(['updateForm'])
+  })
+
+  test('can connect to any component', () => {
+    expect(true).toBeTruthy()
+  })
 })

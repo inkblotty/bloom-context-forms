@@ -1,7 +1,7 @@
-import React from 'react';
-import { FormProvider, getCurrentContext } from 'bloom-context-forms';
+import React from 'react'
+import { FormHandler, getCurrentContext } from 'bloom-context-forms'
 
-import ExampleForm from './presentation/example-form';
+import ExampleForm from './presentation/example-form'
 
 class ExampleFormContainer extends React.Component {
   rerouteAfterSubmit = () => {
@@ -48,14 +48,14 @@ class ExampleFormContainer extends React.Component {
     };
 
     return (
-      <FormProvider
+      <FormHandler
         id="exampleForm"
         fieldNames={fieldNames}
         submitForm={this.submitForm}
         validationHelp={validationHelp}
       >
         <ExampleForm />
-      </FormProvider>
+      </FormHandler>
     );
   }
 }

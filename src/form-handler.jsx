@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { FormContext } from './form-context'
+import { FormContext } from './'
 
 import { validatorAggregator as validator } from './validator'
+// import { getCurrentContext } from '.';
 
 const initialFormState = {
   attemptedSubmit: false,
@@ -19,7 +20,7 @@ const updateContextDangerously = (id, state) => {
   return FormContext._currentValue.updateForm(id, state)
 }
 
-class FormProvider extends React.Component {
+class FormHandler extends React.Component {
   state = {
     ...initialFormState,
     checkField: this.checkField,
@@ -64,24 +65,26 @@ class FormProvider extends React.Component {
     this.updateVisibleFields()
 
     // ensure arrow-bound methods are passed into context
-    this.setState(
-      {
-        checkField: this.checkField,
-        checkMultipleFields: this.checkMultipleFields,
-        updateVisibleFields: this.updateVisibleFields,
-        updateField: this.updateField
-      },
+    const newState = {
+      checkField: this.checkField,
+      checkMultipleFields: this.checkMultipleFields,
+      updateVisibleFields: this.updateVisibleFields,
+      updateField: this.updateField
+    }
+
+    this.setState(newState,
       () => {
-        updateContextDangerously(this.props.id, this.state)
+        updateContextDangerously(this.props.id, { ...this.state, ...newState })
       }
     )
   }
 
-  componentWillReceiveProps(newProps) {
+  componentDidUpdate(prevProps) {
+    const newProps = this.props
     if (
       newProps.prepopulateData &&
-      (!this.props.prepopulateData ||
-        Object.values(this.props.prepopulateData)
+      (!prevProps.prepopulateData ||
+        Object.values(prevProps.prepopulateData)
           .sort()
           .toString() !=
           Object.values(newProps.prepopulateData)
@@ -92,8 +95,8 @@ class FormProvider extends React.Component {
     }
 
     if (
-      this.props.fieldNames &&
-      newProps.fieldNames.length != this.props.fieldNames.length
+      newProps.fieldNames && (!prevProps.fieldNames ||
+      (newProps.fieldNames.length != prevProps.fieldNames.length))
     ) {
       this.populateFields(newProps.fieldNames, null, this.state.fields)
     }
@@ -264,7 +267,7 @@ class FormProvider extends React.Component {
 
     return Promise.all(checkArr)
       .then(isValidValues => {
-        if ((isValidValues || []).reduce((a, b) => a && b)) {
+        if ((isValidValues || []).reduce((a, b) => a && b, true)) {
           const successCallback = () => {
             this.setState({
               processingRequest: false
@@ -419,10 +422,10 @@ class FormProvider extends React.Component {
       let val = value || e.target.value || ''
       const type =
         optType ||
-        (
+        (document && (
           document.getElementById(fieldName) ||
           [...document.getElementsByName(fieldName)][0]
-        ).getAttribute('type') ||
+        ).getAttribute('type')) ||
         'text'
 
       if (type === 'checkbox') {
@@ -509,7 +512,7 @@ class FormProvider extends React.Component {
   };
 
   render() {
-    const { children, className, id, wrapInFormElement } = this.props
+    const { children, id, wrapInFormElement, ...formProps } = this.props
     const childContext = {
       ...this.state,
       checkField: this.checkField,
@@ -523,7 +526,7 @@ class FormProvider extends React.Component {
     return (
       <FormContext.Provider value={{ [id]: childContext }}>
         {wrapInFormElement ? (
-          <form id={id} className={className} noValidate>
+          <form id={id} noValidate {...formProps}>
             {children}
           </form>
         ) : (
@@ -534,4 +537,4 @@ class FormProvider extends React.Component {
   }
 }
 
-export default FormProvider
+export default FormHandler
