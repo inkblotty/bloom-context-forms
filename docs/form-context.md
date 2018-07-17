@@ -1,7 +1,7 @@
 # FormContext's hooks
 
 ## connectForm function
-Connects any children of the FormProvider to the form context.
+Connects any children of the FormHandler to the form context.
 
 ### Usage:
 ```
@@ -9,7 +9,7 @@ import { connectForm } from 'bloom-context-forms'
 
 ...
 
-export default connectForm(FormConsumerComponent)
+export default connectForm(FormMarkupComponent)
 ```
 
 ## getCurrentContext function
